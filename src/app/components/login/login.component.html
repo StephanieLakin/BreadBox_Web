@@ -1,0 +1,14 @@
+<div class="container mt-5">
+    <h2>Login</h2>
+    <form (ngSubmit)="onSubmit()" class="mt-3">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+                  <input id="email" type="email" pInputText [(ngModel)]="email" name="email" required />
+        </div>
+        <div class="p-field">
+            <label for="password">Password</label>
+            <input id="password" type="password" pInputText [(ngModel)]="password" name="password" required />
+        </div>
+        <button pbutton type="submit" label="Login" class="p-mt-2">Password</button>
+    </form>
+</div>
