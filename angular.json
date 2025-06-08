@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "breadbox-web:build:production"
+              "buildTarget": "breadbox-web:build:production"
             },
             "development": {
-              "browserTarget": "breadbox-web:build:development"
+              "buildTarget": "breadbox-web:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "breadbox-web:build"
+            "buildTarget": "breadbox-web:build"
           }
         },
         "test": {
