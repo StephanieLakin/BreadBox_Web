@@ -1,14 +1,16 @@
-<div class="container mt-5">
-    <h2>Login</h2>
-    <form (ngSubmit)="onSubmit()" class="mt-3">
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-                  <input id="email" type="email" pInputText [(ngModel)]="email" name="email" required />
-        </div>
-        <div class="p-field">
-            <label for="password">Password</label>
-            <input id="password" type="password" pInputText [(ngModel)]="password" name="password" required />
-        </div>
-        <button pbutton type="submit" label="Login" class="p-mt-2">Password</button>
+<div class="flex justify-center items-center h-screen">
+  <div class="card p-6 w-full max-w-md">
+    <h3 class="text-center text-2xl font-bold">Login</h3>
+    <form (ngSubmit)="onSubmit()" class="mt-4 space-y-4">
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input id="email" type="email" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" [(ngModel)]="email" name="email" required>
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input id="password" type="password" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" [(ngModel)]="password" name="password" required>
+      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition">Login</button>
     </form>
+  </div>
 </div>

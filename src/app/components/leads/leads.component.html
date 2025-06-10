@@ -1,0 +1,28 @@
+<div class="container mx-auto mt-5 p-4">
+  <div class="card p-4">
+    <h3 class="text-2xl font-bold">Leads</h3>
+    <div *ngIf="leads.length > 0; else noLeads">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="p-2 border">ID</th>
+            <th class="p-2 border">Name</th>
+            <th class="p-2 border">Email</th>
+            <th class="p-2 border">Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lead of leads" class="border">
+            <td class="p-2 border">{{ lead.id }}</td>
+            <td class="p-2 border">{{ lead.name }}</td>
+            <td class="p-2 border">{{ lead.emailAddress }}</td>
+            <td class="p-2 border">{{ lead.phone }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noLeads>
+      <p class="text-gray-500">No leads available.</p>
+    </ng-template>
+  </div>
+</div>

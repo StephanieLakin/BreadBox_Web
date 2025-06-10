@@ -7,6 +7,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
+import { LeadsComponent } from './components/leads/leads.component';
+import { authGuard } from './auth.guard';
 
 export function tokenGetter() {
   return localStorage.getItem('auth_token');
@@ -15,7 +17,8 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    LeadsComponent
   ],
 imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ imports: [
     })
   ],
   providers: [
-    AuthService
+    AuthService,
+    { provide: 'authGuard', useValue: authGuard }
   ],
   bootstrap: [AppComponent]
 })
