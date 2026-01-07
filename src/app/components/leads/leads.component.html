@@ -1,4 +1,53 @@
 <div class="container mx-auto mt-5 p-4">
+<!-- Success/Error Messages -->
+  <div *ngIf="successMessage" class="bg-green-100 text-green-800 p-2 mb-4 rounded" role="alert">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="bg-red-100 text-red-800 p-2 mb-4 rounded" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Create Lead Form -->
+  <div class="card p-4 mb-6">
+    <h4 class="text-lg font-semibold mb-4">Add New Lead</h4>
+    <form #leadForm="ngForm" (ngSubmit)="createLead()" class="space-y-4">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+        <input id="name" name="name" [(ngModel)]="newLead.name" required #name="ngModel"
+               class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+               [class.border-red-500]="name.invalid && name.touched">
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input id="email" name="email" [(ngModel)]="newLead.emailAddress" required type="email" #email="ngModel"
+               class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+               [class.border-red-500]="email.invalid && email.touched">
+      </div>
+      <div>
+        <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+        <input id="phone" name="phone" [(ngModel)]="newLead.phone" required #phone="ngModel"
+               class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+               [class.border-red-500]="phone.invalid && phone.touched">
+      </div>
+      <div>
+        <label for="source" class="block text-sm font-medium text-gray-700">Source</label>
+        <input id="source" name="source" [(ngModel)]="newLead.source" required #source="ngModel"
+               class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+               [class.border-red-500]="source.invalid && source.touched">
+      </div>
+       <div>
+        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+        <input id="status" name="status" [(ngModel)]="newLead.status" required #status="ngModel"
+               class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+               [class.border-red-500]="status.invalid && status.touched">
+      </div>
+
+      <button type="submit" [disabled]="leadForm.invalid" class="bg-green-600 text-white p-2 rounded-lg hover:bg-green-700">
+        Add Lead
+      </button>
+    </form>
+  </div>
+  <!-- Leads Table -->
   <div class="card p-4">
     <h3 class="text-2xl font-bold">Leads</h3>
     <div *ngIf="leads.length > 0; else noLeads">

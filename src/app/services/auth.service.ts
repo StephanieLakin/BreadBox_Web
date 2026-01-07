@@ -24,6 +24,10 @@ export class AuthService {
       tap(response => {
         if (response.token) {
           localStorage.setItem(this.tokenKey, response.token);
+          console.log(
+      'Decoded token:',
+      this.jwtHelper.decodeToken(response.token)
+    );
         }
       }),
       catchError((error: HttpErrorResponse) => {
@@ -39,6 +43,42 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
+  }
+
+//  getUserId(): number | null {
+//   const token = this.getToken();
+//   if (!token || this.jwtHelper.isTokenExpired(token)) {
+//     return null;
+//   }
+
+//   const decoded = this.jwtHelper.decodeToken(token);
+
+//   return (
+//     Number(decoded['sub']) ||
+//     Number(decoded['nameid']) ||
+//     Number(decoded['userId']) ||
+//     null
+//   );
+// }
+
+getUserId(): number | null {
+  const token = this.getToken();
+  if (token && !this.jwtHelper.isTokenExpired(token)) {
+    const decodedToken = this.jwtHelper.decodeToken(token);
+
+    const userId =
+      decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+
+    return userId ? Number(userId) : null;
+  }
+  return null;
+}
+
+
+
+  isTokenExpired(): boolean {
+    const token = this.getToken();
+    return token ? this.jwtHelper.isTokenExpired(token) : true;
   }
 
   logout(): void {

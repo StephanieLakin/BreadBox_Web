@@ -9,6 +9,9 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { LeadsComponent } from './components/leads/leads.component';
 import { authGuard } from './auth.guard';
+import { LeadService } from './services/lead.service';
+import { ClientsComponent } from './components/clients/clients.component';
+import { CommonModule } from '@angular/common';
 
 export function tokenGetter() {
   return localStorage.getItem('auth_token');
@@ -18,10 +21,12 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     LoginComponent,
-    LeadsComponent
+    LeadsComponent,
+    ClientsComponent
   ],
 imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -35,8 +40,8 @@ imports: [
   ],
   providers: [
     AuthService,
-    { provide: 'authGuard', useValue: authGuard }
-  ],
+    LeadService
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
